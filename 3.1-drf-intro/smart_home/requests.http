@@ -1,9 +1,13 @@
-# примеры API-запросов
-
 @baseUrl = http://localhost:8000/api
 
-# получение датчиков
+# получение всех датчиков
 GET {{baseUrl}}/sensors/
+Content-Type: application/json
+
+###
+
+# удаление всех датчиков
+DELETE {{baseUrl}}/sensors/
 Content-Type: application/json
 
 ###
@@ -40,6 +44,33 @@ Content-Type: application/json
 
 ###
 
+# добавление измерения с картинкой
+POST {{baseUrl}}/measurements/
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="sensor"
+
+1
+--boundary
+Content-Disposition: form-data; name="temperature"
+
+22.7
+--boundary
+Content-Disposition: form-data; name="photo"; filename="image.jpg"
+Content-Type: image/jpeg
+
+@C:/Users/tase/Desktop/1.jpg
+--boundary--
+
+###
+
 # получение информации по датчику
 GET {{baseUrl}}/sensors/1/
+Content-Type: application/json
+
+###
+
+# тест картинки
+GET {{baseUrl}}/media/image.jpg
 Content-Type: application/json
